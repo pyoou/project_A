@@ -40,7 +40,7 @@ class CustomAccountManager(BaseUserManager):
 class NewUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(_('user name'), max_length=150, unique=True)
-    phone_number = models.CharField(_('email address'), max_length=30, unique=True)
+    phone_number = models.CharField(_('phone number'), max_length=30, unique=True)
 
     profile_image = models.ImageField(_('profile image'), width_field=200, height_field=200,
                                       upload_to='images/', blank=True, null=True)
@@ -52,7 +52,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomAccountManager()
 
-    USERNAME_FIELD = 'email' or 'phone_number'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_name', 'phone_number']
 
     def __str__(self):
